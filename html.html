@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leadz – UGC Modellen</title>
+  <meta name="description" content="UGC-drevet annonseringsmodell som fyller lommeboken til nettbutikker og lokale bedrifter. Gjør vekst enklere, mer forutsigbart og mindre stressende." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f9fafb;
+      --card:#ffffff;
+      --text:#1e293b;
+      --muted:#64748b;
+      --brand:#79eebd;
+      --brand-dark:#10b981;
+      --shadow:0 10px 20px rgba(0,0,0,.08);
+      --radius-2xl:1.25rem;
+    }
+    [data-theme="dark"]{
+      --bg:#0f172a;
+      --card:#1e293b;
+      --text:#f1f5f9;
+      --muted:#94a3b8;
+      --shadow:0 10px 20px rgba(0,0,0,.4);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+    .container{width:min(1120px,92%);margin-inline:auto}
+
+    header{position:sticky;top:0;background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.06);z-index:50;transition:background .3s}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--text);font-weight:700}
+    .brand img{height:42px;width:auto}
+    nav{display:flex;align-items:center;gap:.5rem}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;transition:color .3s ease}
+    nav a:hover{color:var(--brand-dark)}
+    .btn{padding:.8rem 1.2rem;border:none;border-radius:999px;font-weight:700;cursor:pointer;transition:all .3s ease}
+    .btn-primary{background:var(--brand);color:#fff;box-shadow:var(--shadow)}
+    .btn-primary:hover{background:var(--brand-dark)}
+    .btn-outline{background:transparent;border:2px solid var(--brand);color:var(--brand)}
+    .btn-outline:hover{background:var(--brand);color:#fff}
+
+    .hero{padding:4rem 1rem 2rem}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center}
+    h1{font-size:clamp(1.8rem,5vw,3rem);margin:0 0 1rem;font-weight:800}
+    .lead{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--muted);max-width:60ch}
+    .hero-card{background:var(--card);padding:1.5rem;border-radius:var(--radius-2xl);box-shadow:var(--shadow);transition:background .3s,color .3s}
+
+    section{padding:3rem 1rem}
+    h2{font-size:clamp(1.6rem,4vw,2rem);margin:0 0 1rem;font-weight:700}
+    .muted{color:var(--muted)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .card{background:var(--card);border-radius:var(--radius-2xl);padding:1.5rem;box-shadow:var(--shadow);transition:background .3s,color .3s}
+
+    .form{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+    .form .full{grid-column:1/-1}
+    label{display:block;font-weight:600;margin-bottom:.35rem}
+    input,textarea,select{width:100%;padding:.9rem;border-radius:.8rem;border:1px solid #cbd5e1;background:#fff;color:var(--text)}
+    textarea{min-height:120px}
+
+    footer{padding:2.5rem 1rem;background:var(--card);border-top:1px solid #e2e8f0;margin-top:3rem;transition:background .3s}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:1.5rem}
+    .copy{color:var(--muted);font-size:.95rem}
+
+    /* Animations */
+    [data-animate]{opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s ease}
+    [data-animate].visible{opacity:1;transform:translateY(0)}
+
+    /* Mobile adjustments */
+    @media(max-width:960px){
+      .hero-grid{grid-template-columns:1fr;gap:1.5rem}
+      .grid-3{grid-template-columns:1fr;gap:1rem}
+      .form{grid-template-columns:1fr}
+      .hero{padding:3rem 1rem 2rem}
+      nav{flex-direction:column;align-items:flex-start;gap:.5rem;display:none;width:100%}
+      nav.active{display:flex}
+      .menu-toggle{display:block;background:var(--brand);color:#fff;border:none;padding:.6rem 1rem;border-radius:.5rem;cursor:pointer;font-weight:700}
+    }
+    @media(min-width:961px){
+      .menu-toggle{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="https://yourwebsite.com" class="brand">
+        <img src="file:///C:/Users/Lenovo/Documents/Leadz/leadzugcmodelogo.png" alt="Leadz Logo">
+      </a>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav id="navMenu">
+        <a href="#modellen">UGC Modellen</a>
+        <a href="#hvorfor">Hvorfor oss</a>
+        <a href="#kontakt">Kontakt</a>
+        <button class="btn btn-outline" onclick="scrollToForm()">Få modellen</button>
+        <button class="btn btn-outline" onclick="toggleTheme()">🌓</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container" data-animate>
+      <div class="hero-grid">
+        <div>
+          <h1>UGC-drevet annonseringsmodell</h1>
+          <p class="lead">Å vokse en bedrift er vanskelig. Med vår UGC-modell gjør vi det enklere, mer forutsigbart og mindre stressende. Over <b>500+ selskaper</b> i Skandinavia stoler på oss.</p>
+          <div style="margin-top:1.5rem">
+            <button class="btn btn-primary" onclick="scrollToForm()">Få modellen i dag</button>
+          </div>
+        </div>
+        <div class="hero-card" data-animate>
+          <b>Hvorfor UGC?</b>
+          <p class="muted">Brukergenerert innhold gir autentisitet og tillit. Vi hjelper bedrifter å utnytte UGC som drivkraft i annonsering – en modell som engasjerer og konverterer.</p>
+          <ul class="muted" style="margin:0 0 0 1rem">
+            <li>Bygger troverdighet med ekte stemmer</li>
+            <li>Skaper høyere engasjement</li>
+            <li>Leverer salg som kan måles</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="modellen" class="container" data-animate>
+      <h2>UGC-modellen i korte trekk</h2>
+      <div class="grid-3" style="margin-top:1rem">
+        <div class="card" data-animate>
+          <h3>Autentisitet</h3>
+          <p class="muted">Innhold fra virkelige brukere bygger tillit raskere enn tradisjonelle annonser.</p>
+        </div>
+        <div class="card" data-animate>
+          <h3>Engasjement</h3>
+          <p class="muted">UGC gir høyere delingsrate og bedre tilknytning til målgruppen.</p>
+        </div>
+        <div class="card" data-animate>
+          <h3>Konvertering</h3>
+          <p class="muted">Vi skaper UGC-kampanjer som ikke bare blir sett – men som selger.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="container" data-animate>
+      <div class="card">
+        <h2>Få tilsendt UGC-modellen</h2>
+        <form id="leadForm" class="form" novalidate>
+          <div>
+            <label for="name">Navn</label>
+            <input id="name" name="name" placeholder="Ola Nordmann" required />
+          </div>
+          <div>
+            <label for="phone">Telefon</label>
+            <input id="phone" name="phone" placeholder="+47 412 96 593" required />
+          </div>
+          <div class="full">
+            <label for="email">E-post</label>
+            <input id="email" name="email" type="email" placeholder="ola@nordmann.no" required />
+          </div>
+          <div class="full">
+            <label for="message">Kort om bedriften</label>
+            <textarea id="message" name="message" placeholder="Bransje, mål, etc."></textarea>
+          </div>
+          <div class="form full">
+            <button id="submitBtn" class="btn btn-primary" type="submit">Send meg modellen</button>
+            <span id="formStatus" class="muted"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontakt" data-animate>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:.5rem">
+          <img src="file:///C:/Users/Lenovo/Documents/Leadz/leadzugcmodelogo.png" alt="Leadz Logo">
+        </div>
+        <p class="copy">© 2025 Leadzno | Alle rettigheter forbeholdt.</p>
+      </div>
+      <div>
+        <h4>Aker Valley AS</h4>
+        <p class="copy">Tjuvholmen allé 4<br>0252 Oslo, Norway</p>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <p class="copy">
+          <a href="tel:+4741296593">+47 412 96 593</a><br>
+          <a href="mailto:info@leadzmedia.no">info@leadzmedia.no</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function scrollToForm(){document.getElementById('cta').scrollIntoView({behavior:'smooth'});}
+    const form=document.getElementById('leadForm');
+    const statusEl=document.getElementById('formStatus');
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      if(!form.checkValidity()){form.reportValidity();return;}
+      statusEl.textContent="Takk! Modellen er på vei til deg.";
+      form.reset();
+    });
+
+    // Animations on scroll
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.2});
+    document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
+
+    // Theme toggle
+    function toggleTheme(){
+      const body=document.body;
+      if(body.getAttribute('data-theme')==='dark'){
+        body.removeAttribute('data-theme');
+      }else{
+        body.setAttribute('data-theme','dark');
+      }
+    }
+
+    // Mobile menu toggle
+    function toggleMenu(){
+      document.getElementById('navMenu').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
